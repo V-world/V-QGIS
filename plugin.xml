@@ -1,0 +1,10 @@
+<plugins>
+  <pyqgis_plugin name="[베타]브이월드 QGIS 플러그인" version="0.27">
+    <description>브이월드를 QGIS에서 보다 쉽게 활용할 수 있도록 기능을 제공합니다</description>
+    <homepage>https://www.vworld.kr</homepage>
+    <qgis_minimum_version>3.10</qgis_minimum_version>
+    <file_name>V-QGIS</file_name>
+    <author_name>DongYoun, Lee</author_name>
+    <download_url>URL 입력예정</download_url>
+  </pyqgis_plugin>
+</plugins>
