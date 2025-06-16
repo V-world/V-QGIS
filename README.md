@@ -17,6 +17,7 @@ QGIS: 버전 3.10 이상
 저장소를 추가하여 이용하거나 소스코드를 다운로드 받아 직접 설치하는 방법을 골라 설치합니다.
 
 ### 방법 1: QGIS 플러그인 저장소 연동 (권장: 자동 업데이트)
+연동 URL https://v-world.github.io/V-QGIS/plugin.xml
 
 ### 방법 2: ZIP 파일로 직접 설치
 [💾다운로드 바로가기](https://github.com/V-world/V-QGIS/releases/)
