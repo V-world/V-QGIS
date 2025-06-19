@@ -5,6 +5,6 @@
     <qgis_minimum_version>3.10</qgis_minimum_version>
     <file_name>QGIS_Vplugin</file_name>
     <author_name>DongYoun, Lee</author_name>
-    <download_url>http://spacen.or.kr/techday/QGIS_Vplugin_0.27.zip</download_url>
+    <download_url>https://github.com/V-world/V-QGIS/releases/download/Beta/QGIS_Vplugin_0.27.zip</download_url>
   </pyqgis_plugin>
 </plugins>
