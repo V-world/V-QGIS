@@ -1,0 +1,19 @@
+[general]
+name=V-World Plugin
+qgisMinimumVersion=3.0
+description=QGIS에서 브이월드를 쉽게 활용할 수 있도록 기능제공
+version=1.0.0
+author=spaceN.or.kr
+email=dy.lee@spacen.or.kr
+
+about=공간정보 오픈플랫폼(브이월드) QGIS 플러그인
+
+tracker=
+repository=
+tags=vworld,korea,geocoding,wfs,wmts
+
+homepage=
+category=Web
+icon=icon.png
+experimental=False
+deprecated=False

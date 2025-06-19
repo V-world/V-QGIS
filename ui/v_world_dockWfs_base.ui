@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VWorldDockWidgetBase</class>
+ <widget class="QDockWidget" name="VWorldDockWidgetBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>861</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>브이월드 주제도</string>
+  </property>
+  <widget class="QWidget" name="dockWidgetContents">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="linktoVworld">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;주제도 불러오기 이용 시 전체 데이터를 가져올 수 없습니다. &lt;/span&gt;&lt;br/&gt;&lt;span&gt;전체 데이터를 이용하려면 브이월드 홈페이지에서 직접 다운로드 받으시길 바랍니다&lt;/span&gt;&lt;a href=&quot;https://www.vworld.kr/dtmk/dtmk_ntads_s001.do&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;(다운로드 바로가기)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600; color:#ff0004;&quot;&gt;☆ 축적 1:1000에서 이용을 권장합니다. ☆&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="wfsSearch">
+      <property name="placeholderText">
+       <string>주제도 검색하기</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="wfsTab1">
+       <attribute name="title">
+        <string>주제도 목록</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QListWidget" name="wfsList">
+          <property name="selectionMode">
+           <enum>QAbstractItemView::ExtendedSelection</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="wfsTab2">
+       <property name="accessibleName">
+        <string/>
+       </property>
+       <attribute name="title">
+        <string>즐겨찾기</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QListWidget" name="wfsFavorites">
+          <property name="selectionMode">
+           <enum>QAbstractItemView::ExtendedSelection</enum>
+          </property>
+          <item>
+           <property name="text">
+            <string>즐겨찾기 추가 방법은</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&quot;주제도 목록&quot;에서</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>주제도 우클릭하여</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>추가 가능합니다.</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
