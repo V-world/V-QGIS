@@ -1,3 +1,7 @@
 # Python cache
 __pycache__/
+<<<<<<< HEAD
 *.pyc
+=======
+*.pyc
+>>>>>>> 2c505f2997e9541b0efa9faf8e8a9f80aa95a760
