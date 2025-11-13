@@ -71,6 +71,40 @@ class ApiClient:
             logger.error(f"API 요청 실패: {e}")
             raise ApiError(f"API 요청 실패: {str(e)}")
 
+    def _validate_json_response(self, data: Dict[str, Any], endpoint: str) -> Dict[str, Any]:
+        """
+            JSON 응답 검증
+
+            Args:
+                data: JSON 응답 데이터
+                endpoint: API 엔드포인트 (로깅용)
+
+            Returns:
+                검증된 데이터
+
+            Raises:
+                ApiError: 응답이 유효하지 않은 경우
+        """
+        # 빈 응답 체크
+        if not data:
+            raise ApiError(f"빈 응답 수신: {endpoint}")
+
+        # 에러 응답 체크
+        if 'error' in data:
+            error_msg = data.get('error', {})
+            if isinstance(error_msg, dict):
+                error_text = error_msg.get('text', 'Unknown error')
+            else:
+                error_text = str(error_msg)
+            raise ApiError(f"API 에러: {error_text}")
+
+        # status 체크 (일부 API는 status 필드 사용)
+        if 'status' in data and data['status'] in ['error', 'fail', 'ERROR', 'FAIL']:
+            error_msg = data.get('message', 'Unknown error')
+            raise ApiError(f"API 에러: {error_msg}")
+
+        return data
+
     def search_address(self, query: str, crs: str = "EPSG:4326", search_type: str = "ADDRESS", size: int = DEFAULT_SEARCH_SIZE) -> Dict[str, Any]:
         """
             주소 검색
@@ -86,7 +120,8 @@ class ApiClient:
         }
 
         response = self.request("/req/search", params)
-        return response.json()
+        data = response.json()
+        return self._validate_json_response(data, "/req/search")
 
     def reverse_geocode(self, x: float, y: float, crs: str = "EPSG:4326") -> Dict[str, Any]:
         """
@@ -101,7 +136,8 @@ class ApiClient:
         }
 
         response = self.request("/req/address", params)
-        return response.json()
+        data = response.json()
+        return self._validate_json_response(data, "/req/address")
 
     def geocode(self, address: str, crs: str = "EPSG:4326") -> Dict[str, Any]:
         """
@@ -117,7 +153,8 @@ class ApiClient:
         }
 
         response = self.request("/req/address", params)
-        return response.json()
+        data = response.json()
+        return self._validate_json_response(data, "/req/address")
 
     def get_wfs_capabilities(self) -> ET.Element:
         """

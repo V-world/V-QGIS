@@ -11,7 +11,11 @@ from typing import List, Tuple, Dict, Any
 import logging
 
 from .base_widget import BaseWidget
-from ..constants import UI_DIR, SEARCHES_FILE, SEARCH_RESULT_LAYER, MAX_RECENT_SEARCHES
+from ..constants import (
+    UI_DIR, SEARCHES_FILE, SEARCH_RESULT_LAYER, MAX_RECENT_SEARCHES,
+    DATA_ROLE_X, DATA_ROLE_Y, DATA_ROLE_TYPE, DATA_ROLE_CRS,
+    WORKER_QUIT_TIMEOUT, WORKER_TERMINATE_TIMEOUT
+)
 from ..utils import FileManager, ApiClient, with_error_handling, with_loading_cursor
 from ..core import LayerManager, SearchWorker
 from ..exceptions import ApiError
@@ -56,10 +60,13 @@ class SearchWidget(BaseWidget, FORM_CLASS):
         if not query:
             return
 
-        # 기존 검색 워커 정리
+        # 기존 검색 워커 정리 (안전한 종료)
         if self.search_worker and self.search_worker.isRunning():
-            self.search_worker.terminate()
-            self.search_worker.wait()
+            self.search_worker.quit()  # 정상 종료 요청
+            if not self.search_worker.wait(WORKER_QUIT_TIMEOUT):
+                logger.warning("SearchWorker 정상 종료 실패, 강제 종료")
+                self.search_worker.terminate()
+                self.search_worker.wait(WORKER_TERMINATE_TIMEOUT)
 
         # 새 검색 워커 시작
         self.search_worker = SearchWorker(query, self.get_current_crs())
@@ -79,9 +86,9 @@ class SearchWidget(BaseWidget, FORM_CLASS):
 
         for result in results:
             item = QListWidgetItem(result['address'])
-            item.setData(Qt.UserRole, result['x'])
-            item.setData(Qt.UserRole + 1, result['y'])
-            item.setData(Qt.UserRole + 2, result.get('type', 'unknown'))
+            item.setData(DATA_ROLE_X, result['x'])
+            item.setData(DATA_ROLE_Y, result['y'])
+            item.setData(DATA_ROLE_TYPE, result.get('type', 'unknown'))
             self.listSearch.addItem(item)
 
     def _on_search_item_clicked(self, item: QListWidgetItem):
@@ -91,8 +98,8 @@ class SearchWidget(BaseWidget, FORM_CLASS):
         if item.text() == "검색 결과 없음":
             return
 
-        x = float(item.data(Qt.UserRole))
-        y = float(item.data(Qt.UserRole + 1))
+        x = float(item.data(DATA_ROLE_X))
+        y = float(item.data(DATA_ROLE_Y))
         address = item.text()
 
         # 최근 검색에 추가
@@ -109,24 +116,49 @@ class SearchWidget(BaseWidget, FORM_CLASS):
         """
             최근 검색 아이템 클릭
         """
-        x = float(item.data(Qt.UserRole))
-        y = float(item.data(Qt.UserRole + 1))
-        epsg = item.data(Qt.UserRole + 2)
-        address = item.text()
+        try:
+            x = float(item.data(DATA_ROLE_X))
+            y = float(item.data(DATA_ROLE_Y))
+            epsg = item.data(DATA_ROLE_CRS)
+            address = item.text()
 
-        # 좌표계 변환 필요 시
-        current_crs = self.get_current_crs()
-        if current_crs != epsg:
-            source_crs = QgsCoordinateReferenceSystem(epsg)
-            dest_crs = QgsCoordinateReferenceSystem(current_crs)
-            transform = QgsCoordinateTransform(source_crs, dest_crs, QgsProject.instance())
+            # 좌표계 변환 필요 시
+            current_crs = self.get_current_crs()
+            if current_crs != epsg:
+                source_crs = QgsCoordinateReferenceSystem(epsg)
+                dest_crs = QgsCoordinateReferenceSystem(current_crs)
 
-            point = transform.transform(QgsPointXY(x, y))
-            x, y = point.x(), point.y()
+                # 좌표계 유효성 확인
+                if not source_crs.isValid():
+                    logger.error(f"잘못된 원본 좌표계: {epsg}")
+                    self.show_error_message("좌표계 오류", f"원본 좌표계가 유효하지 않습니다: {epsg}")
+                    return
 
-        # 지도 이동 및 마커 추가
-        self.zoom_to_point(x, y)
-        self._add_search_marker(x, y, address)
+                if not dest_crs.isValid():
+                    logger.error(f"잘못된 대상 좌표계: {current_crs}")
+                    self.show_error_message("좌표계 오류", f"대상 좌표계가 유효하지 않습니다: {current_crs}")
+                    return
+
+                transform = QgsCoordinateTransform(source_crs, dest_crs, QgsProject.instance())
+
+                try:
+                    point = transform.transform(QgsPointXY(x, y))
+                    x, y = point.x(), point.y()
+                except Exception as e:
+                    logger.error(f"좌표 변환 실패 ({epsg} -> {current_crs}): {e}")
+                    self.show_error_message("좌표 변환 오류", f"좌표 변환에 실패했습니다: {str(e)}")
+                    return
+
+            # 지도 이동 및 마커 추가
+            self.zoom_to_point(x, y)
+            self._add_search_marker(x, y, address)
+
+        except ValueError as e:
+            logger.error(f"좌표 파싱 오류: {e}")
+            self.show_error_message("데이터 오류", "저장된 좌표 정보가 올바르지 않습니다.")
+        except Exception as e:
+            logger.error(f"최근 검색 처리 오류: {e}")
+            self.show_error_message("오류", f"검색 결과를 표시하는 중 오류가 발생했습니다: {str(e)}")
 
     def _add_to_recent_searches(self, address: str, x: float, y: float):
         """
@@ -154,9 +186,9 @@ class SearchWidget(BaseWidget, FORM_CLASS):
 
         for address, (x, y, crs) in searches.items():
             item = QListWidgetItem(address)
-            item.setData(Qt.UserRole, x)
-            item.setData(Qt.UserRole + 1, y)
-            item.setData(Qt.UserRole + 2, crs)
+            item.setData(DATA_ROLE_X, x)
+            item.setData(DATA_ROLE_Y, y)
+            item.setData(DATA_ROLE_CRS, crs)
             self.recentSearchs.addItem(item)
 
     def _add_search_marker(self, x: float, y: float, address: str):

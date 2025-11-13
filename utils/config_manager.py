@@ -3,31 +3,72 @@ import json
 from typing import Any, Optional
 from PyQt5.QtCore import QSettings
 
-from ..constants import OPTIONS_FILE, DEFAULT_PROTOCOL, PROTOCOL_OPTIONS
-from ..config import API_KEY  # config.py에서 API_KEY 가져오기
+from ..constants import OPTIONS_FILE, DEFAULT_PROTOCOL, PROTOCOL_OPTIONS, ENV_FILE
+from ..config import API_KEY  # config.py에서 기본 API_KEY 가져오기
 
 
 class ConfigManager:
     def __init__(self):
         self._settings = QSettings('VWorld', 'Plugin')
         self._options = self._load_options()
+        self._env_cache = None  # .env 파일 캐시
+
+    def _load_env(self) -> dict:
+        """
+            .env 파일 로드 (캐싱)
+        """
+        if self._env_cache is None:
+            from .file_manager import FileManager
+            self._env_cache = FileManager.read_env(ENV_FILE)
+        return self._env_cache
+
+    def _reload_env(self) -> dict:
+        """
+            .env 파일 강제 리로드
+        """
+        self._env_cache = None
+        return self._load_env()
 
     @property
     def api_key(self) -> str:
         """
-            API 키 반환 - config.py의 값을 우선 사용
+            API 키 반환
+
+            우선순위:
+            1. .env 파일의 VWORLD_API_KEY (사용자 커스텀)
+            2. config.py의 API_KEY (기본 공용 키)
+            3. QSettings에 저장된 키 (레거시)
         """
-        # config.py에 설정된 API_KEY가 있으면 그것을 사용
+        # 1순위: .env 파일
+        env_vars = self._load_env()
+        env_api_key = env_vars.get('VWORLD_API_KEY', '').strip()
+        if env_api_key:
+            return env_api_key
+
+        # 2순위: config.py의 기본 키
         if API_KEY:
             return API_KEY
-        # 없으면 기존 설정에서 가져오기
+
+        # 3순위: 기존 설정 (레거시)
         return self._settings.value('api_key', '')
 
     @api_key.setter
     def api_key(self, value: str):
         """
-            API 키 설정 - config.py의 값이 있어도 설정은 저장
+            API 키 설정 - .env 파일에 저장
+
+            Args:
+                value: API 키 값
         """
+        from .file_manager import FileManager
+
+        if value and value.strip():
+            # .env 파일에 저장
+            FileManager.update_env_variable(ENV_FILE, 'VWORLD_API_KEY', value.strip())
+            # 캐시 갱신
+            self._reload_env()
+
+        # 레거시 지원: QSettings에도 저장
         self._settings.setValue('api_key', value)
 
     @property

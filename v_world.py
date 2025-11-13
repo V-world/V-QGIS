@@ -65,14 +65,28 @@ class VWorld:
         """
             번역기 설정
         """
-        locale = QSettings().value('locale/userLocale')[0:2]
-        locale_path = os.path.join(self.plugin_dir, 'i18n', f'VWorld_{locale}.qm')
+        try:
+            locale = QSettings().value('locale/userLocale', 'ko_KR')
 
-        if os.path.exists(locale_path):
-            self.translator = QTranslator()
-            self.translator.load(locale_path)
-            QCoreApplication.installTranslator(self.translator)
-            logger.info(f"번역 파일 로드 완료: {locale}")
+            # locale이 None이거나 빈 문자열인 경우 기본값 사용
+            if not locale:
+                locale = 'ko_KR'
+
+            # 앞 2자리만 추출
+            locale = locale[0:2] if len(locale) >= 2 else 'ko'
+
+            locale_path = os.path.join(self.plugin_dir, 'i18n', f'VWorld_{locale}.qm')
+
+            if os.path.exists(locale_path):
+                self.translator = QTranslator()
+                self.translator.load(locale_path)
+                QCoreApplication.installTranslator(self.translator)
+                logger.info(f"번역 파일 로드 완료: {locale}")
+            else:
+                logger.debug(f"번역 파일 없음: {locale_path}")
+
+        except Exception as e:
+            logger.warning(f"번역 파일 로드 실패: {e}")
 
     def tr(self, message: str) -> str:
         """

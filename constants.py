@@ -15,6 +15,7 @@ RESOURCES_DIR = os.path.join(PLUGIN_DIR, 'resources')
 OPTIONS_FILE = os.path.join(DATA_DIR, 'options.json')
 SEARCHES_FILE = os.path.join(DATA_DIR, 'recent_searches.json')
 FAVORITES_FILE = os.path.join(DATA_DIR, 'wfs_favorites.json')
+ENV_FILE = os.path.join(PLUGIN_DIR, '.env')
 
 # API 관련
 API_BASE_URL = "api.vworld.kr"
@@ -114,6 +115,16 @@ SEARCH_TYPES = {
     'PARCEL': 'PARCEL',
     'ROAD': 'ROAD'
 }
+
+# Qt User Role 상수 (QListWidgetItem.setData용)
+DATA_ROLE_X = 0x0100  # Qt.UserRole
+DATA_ROLE_Y = 0x0101  # Qt.UserRole + 1
+DATA_ROLE_TYPE = 0x0102  # Qt.UserRole + 2
+DATA_ROLE_CRS = 0x0102  # Qt.UserRole + 2 (CRS용)
+
+# Thread Worker 타임아웃 (밀리초)
+WORKER_QUIT_TIMEOUT = 5000  # 5초
+WORKER_TERMINATE_TIMEOUT = 2000  # 2초
 
 # 프로토콜 설정
 PROTOCOL_OPTIONS = {
