@@ -70,11 +70,11 @@ class ApiClient:
         except requests.exceptions.RequestException as e:
             logger.error(f"API 요청 실패: {e}")
             raise ApiError(f"API 요청 실패: {str(e)}")
-
+    """
     def search_address(self, query: str, crs: str = "EPSG:4326", search_type: str = "ADDRESS", size: int = DEFAULT_SEARCH_SIZE) -> Dict[str, Any]:
-        """
+        
             주소 검색
-        """
+        
         params = {
             "request": "search",
             "format": "json",
@@ -88,7 +88,7 @@ class ApiClient:
 
         response = self.request("/req/search", params)
         return response.json()
-
+    """
     def reverse_geocode(self, x: float, y: float, crs: str = "EPSG:4326") -> Dict[str, Any]:
         """
             역지오코딩
