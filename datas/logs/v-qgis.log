@@ -1,0 +1,95 @@
+2026-06-12 13:20:05,834 INFO VWorld 플러그인 초기화 완료 (플러그인 v1.0.0, QGIS 4.0.2-Norrköping, Windows-11-10.0.26200-SP0, Python 3.12.13)
+2026-06-12 13:20:05,840 INFO GUI 초기화 중
+2026-06-12 13:22:10,256 INFO VWorld 플러그인 언로드 중
+2026-06-12 13:22:10,265 INFO VWorld 플러그인 언로드 완료
+2026-06-12 13:22:17,851 INFO VWorld 플러그인 초기화 완료 (플러그인 v1.0.0, QGIS 4.0.2-Norrköping, Windows-11-10.0.26200-SP0, Python 3.12.13)
+2026-06-12 13:22:17,852 INFO GUI 초기화 중
+2026-06-12 13:22:51,755 INFO VWorld 플러그인 언로드 중
+2026-06-12 13:22:51,764 INFO VWorld 플러그인 언로드 완료
+2026-06-12 13:22:59,301 INFO VWorld 플러그인 초기화 완료 (플러그인 v1.0.0, QGIS 4.0.2-Norrköping, Windows-11-10.0.26200-SP0, Python 3.12.13)
+2026-06-12 13:22:59,302 INFO GUI 초기화 중
+2026-06-12 13:39:40,215 INFO VWorld 플러그인 언로드 중
+2026-06-12 13:39:40,224 INFO VWorld 플러그인 언로드 완료
+2026-06-12 13:39:48,025 INFO VWorld 플러그인 초기화 완료 (플러그인 v1.0.0, QGIS 4.0.2-Norrköping, Windows-11-10.0.26200-SP0, Python 3.12.13)
+2026-06-12 13:39:48,027 INFO GUI 초기화 중
+2026-06-13 01:03:36,145 INFO VWorld 플러그인 언로드 중
+2026-06-13 01:03:36,205 INFO VWorld 플러그인 언로드 완료
+2026-06-25 19:04:01,322 INFO VWorld 플러그인 초기화 완료 (플러그인 v1.0.0, QGIS 4.0.2-Norrköping, Windows-11-10.0.26200-SP0, Python 3.12.13)
+2026-06-25 19:04:01,325 INFO GUI 초기화 중
+2026-06-25 19:04:24,448 INFO VWorld 플러그인 언로드 중
+2026-06-25 19:04:24,451 INFO VWorld 플러그인 언로드 완료
+2026-06-25 19:04:24,520 INFO VWorld 플러그인 초기화 완료 (플러그인 v1.0.0, QGIS 4.0.2-Norrköping, Windows-11-10.0.26200-SP0, Python 3.12.13)
+2026-06-25 19:04:24,522 INFO GUI 초기화 중
+2026-06-25 19:04:34,930 INFO 주소 검색 시작: '삼평동 624-1' (crs=EPSG:4326)
+2026-06-25 19:04:34,930 INFO API 요청: https://api.vworld.kr/req/search params={'service': 'search', 'request': 'search', 'format': 'json', 'size': '20', 'page': '1', 'query': '삼평동 624-1', 'type': 'ADDRESS', 'crs': 'EPSG:4326', 'category': 'PARCEL'}
+2026-06-25 19:04:35,161 INFO API 응답: /req/search HTTP 200 (231ms)
+2026-06-25 19:04:35,162 INFO 주소 검색(지번): 1건
+2026-06-25 19:04:35,163 INFO API 요청: https://api.vworld.kr/req/search params={'service': 'search', 'request': 'search', 'format': 'json', 'size': '20', 'page': '1', 'query': '삼평동 624-1', 'type': 'ADDRESS', 'crs': 'EPSG:4326', 'category': 'ROAD'}
+2026-06-25 19:04:35,422 INFO API 응답: /req/search HTTP 200 (259ms)
+2026-06-25 19:04:35,423 INFO 주소 검색(도로명): 0건
+2026-06-25 19:04:35,424 INFO 주소 검색 완료: '삼평동 624-1' 총 1건
+2026-06-25 19:04:35,431 INFO 검색 결과 표시: 1건
+2026-06-25 19:04:39,472 INFO 주소 검색 시작: '판교로 242' (crs=EPSG:4326)
+2026-06-25 19:04:39,472 INFO API 요청: https://api.vworld.kr/req/search params={'service': 'search', 'request': 'search', 'format': 'json', 'size': '20', 'page': '1', 'query': '판교로 242', 'type': 'ADDRESS', 'crs': 'EPSG:4326', 'category': 'PARCEL'}
+2026-06-25 19:04:39,817 INFO API 응답: /req/search HTTP 200 (344ms)
+2026-06-25 19:04:39,817 INFO 주소 검색(지번): 0건
+2026-06-25 19:04:39,817 INFO API 요청: https://api.vworld.kr/req/search params={'service': 'search', 'request': 'search', 'format': 'json', 'size': '20', 'page': '1', 'query': '판교로 242', 'type': 'ADDRESS', 'crs': 'EPSG:4326', 'category': 'ROAD'}
+2026-06-25 19:04:40,047 INFO API 응답: /req/search HTTP 200 (230ms)
+2026-06-25 19:04:40,048 INFO 주소 검색(도로명): 2건
+2026-06-25 19:04:40,048 INFO 주소 검색 완료: '판교로 242' 총 2건
+2026-06-25 19:04:40,053 INFO 검색 결과 표시: 2건
+2026-06-26 00:24:54,739 INFO VWorld 플러그인 언로드 중
+2026-06-26 00:24:54,761 INFO 위젯 닫힘: search
+2026-06-26 00:24:54,765 INFO VWorld 플러그인 언로드 완료
+2026-06-26 13:19:31,769 INFO VWorld 플러그인 초기화 완료 (플러그인 v1.0.0, QGIS 4.0.2-Norrköping, Windows-11-10.0.26200-SP0, Python 3.12.13)
+2026-06-26 13:19:31,770 INFO GUI 초기화 중
+2026-06-26 13:20:03,695 INFO 주소 검색 시작: '권선동 1287-9' (crs=EPSG:4326)
+2026-06-26 13:20:03,695 INFO API 요청: https://api.vworld.kr/req/search params={'service': 'search', 'request': 'search', 'format': 'json', 'size': '20', 'page': '1', 'query': '권선동 1287-9', 'type': 'ADDRESS', 'crs': 'EPSG:4326', 'category': 'PARCEL'}
+2026-06-26 13:20:03,881 INFO API 응답: /req/search HTTP 200 (185ms)
+2026-06-26 13:20:03,881 INFO 주소 검색(지번): 1건
+2026-06-26 13:20:03,882 INFO API 요청: https://api.vworld.kr/req/search params={'service': 'search', 'request': 'search', 'format': 'json', 'size': '20', 'page': '1', 'query': '권선동 1287-9', 'type': 'ADDRESS', 'crs': 'EPSG:4326', 'category': 'ROAD'}
+2026-06-26 13:20:04,096 INFO API 응답: /req/search HTTP 200 (213ms)
+2026-06-26 13:20:04,097 INFO 주소 검색(도로명): 0건
+2026-06-26 13:20:04,097 INFO 주소 검색 완료: '권선동 1287-9' 총 1건
+2026-06-26 13:20:04,100 INFO 검색 결과 표시: 1건
+2026-06-26 13:20:08,440 INFO 주소 검색 시작: '세권로' (crs=EPSG:4326)
+2026-06-26 13:20:08,440 INFO API 요청: https://api.vworld.kr/req/search params={'service': 'search', 'request': 'search', 'format': 'json', 'size': '20', 'page': '1', 'query': '세권로', 'type': 'ADDRESS', 'crs': 'EPSG:4326', 'category': 'PARCEL'}
+2026-06-26 13:20:08,633 INFO API 응답: /req/search HTTP 200 (193ms)
+2026-06-26 13:20:08,634 INFO 주소 검색(지번): 0건
+2026-06-26 13:20:08,634 INFO API 요청: https://api.vworld.kr/req/search params={'service': 'search', 'request': 'search', 'format': 'json', 'size': '20', 'page': '1', 'query': '세권로', 'type': 'ADDRESS', 'crs': 'EPSG:4326', 'category': 'ROAD'}
+2026-06-26 13:20:08,819 INFO API 응답: /req/search HTTP 200 (184ms)
+2026-06-26 13:20:08,820 INFO 주소 검색(도로명): 20건
+2026-06-26 13:20:08,820 INFO 주소 검색 완료: '세권로' 총 20건
+2026-06-26 13:20:08,822 INFO 검색 결과 표시: 20건
+2026-06-26 13:20:24,203 INFO VWorld 플러그인 언로드 중
+2026-06-26 13:20:24,213 INFO 위젯 닫힘: search
+2026-06-26 13:20:24,214 INFO VWorld 플러그인 언로드 완료
+2026-06-26 13:53:21,730 INFO VWorld 플러그인 초기화 완료 (플러그인 v1.0.0, QGIS 4.0.2-Norrköping, Windows-11-10.0.26200-SP0, Python 3.12.13)
+2026-06-26 13:53:21,732 INFO GUI 초기화 중
+2026-06-26 13:53:31,361 INFO 주소 검색 시작: '판교로 242' (crs=EPSG:4326)
+2026-06-26 13:53:31,362 INFO API 요청: https://api.vworld.kr/req/search params={'service': 'search', 'request': 'search', 'format': 'json', 'size': '20', 'page': '1', 'query': '판교로 242', 'type': 'ADDRESS', 'crs': 'EPSG:4326', 'category': 'PARCEL'}
+2026-06-26 13:53:31,553 INFO API 응답: /req/search HTTP 200 (191ms)
+2026-06-26 13:53:31,554 INFO 주소 검색(지번) 응답[category=PARCEL]: status=NOT_FOUND, record(total=0, current=0), page(total=1, current=1, size=20)
+2026-06-26 13:53:31,554 INFO 주소 검색(지번): 0건
+2026-06-26 13:53:31,554 WARNING 주소 검색(지번) 0건 - 응답 원문[category=PARCEL]: {"response": {"service": {"name": "search", "version": "2.0", "operation": "search", "time": "10(ms)"}, "status": "NOT_FOUND", "record": {"total": "0", "current": "0"}, "page": {"total": "1", "current": "1", "size": "20"}}}
+2026-06-26 13:53:31,554 INFO API 요청: https://api.vworld.kr/req/search params={'service': 'search', 'request': 'search', 'format': 'json', 'size': '20', 'page': '1', 'query': '판교로 242', 'type': 'ADDRESS', 'crs': 'EPSG:4326', 'category': 'ROAD'}
+2026-06-26 13:53:31,742 INFO API 응답: /req/search HTTP 200 (187ms)
+2026-06-26 13:53:31,743 INFO 주소 검색(도로명) 응답[category=ROAD]: status=OK, record(total=2, current=2), page(total=1, current=1, size=20)
+2026-06-26 13:53:31,743 INFO 주소 검색(도로명): 2건
+2026-06-26 13:53:31,743 INFO 주소 검색 완료: '판교로 242' 총 2건
+2026-06-26 13:53:31,745 INFO 검색 결과 표시: 2건
+2026-06-26 13:53:50,459 INFO 주소 검색 시작: '권선동 1287-9' (crs=EPSG:4326)
+2026-06-26 13:53:50,460 INFO API 요청: https://api.vworld.kr/req/search params={'service': 'search', 'request': 'search', 'format': 'json', 'size': '20', 'page': '1', 'query': '권선동 1287-9', 'type': 'ADDRESS', 'crs': 'EPSG:4326', 'category': 'PARCEL'}
+2026-06-26 13:53:50,784 INFO API 응답: /req/search HTTP 200 (324ms)
+2026-06-26 13:53:50,785 INFO 주소 검색(지번) 응답[category=PARCEL]: status=OK, record(total=1, current=1), page(total=1, current=1, size=20)
+2026-06-26 13:53:50,785 INFO 주소 검색(지번): 1건
+2026-06-26 13:53:50,785 INFO API 요청: https://api.vworld.kr/req/search params={'service': 'search', 'request': 'search', 'format': 'json', 'size': '20', 'page': '1', 'query': '권선동 1287-9', 'type': 'ADDRESS', 'crs': 'EPSG:4326', 'category': 'ROAD'}
+2026-06-26 13:53:50,992 INFO API 응답: /req/search HTTP 200 (206ms)
+2026-06-26 13:53:50,993 INFO 주소 검색(도로명) 응답[category=ROAD]: status=NOT_FOUND, record(total=0, current=0), page(total=1, current=1, size=20)
+2026-06-26 13:53:50,993 INFO 주소 검색(도로명): 0건
+2026-06-26 13:53:50,993 WARNING 주소 검색(도로명) 0건 - 응답 원문[category=ROAD]: {"response": {"service": {"name": "search", "version": "2.0", "operation": "search", "time": "11(ms)"}, "status": "NOT_FOUND", "record": {"total": "0", "current": "0"}, "page": {"total": "1", "current": "1", "size": "20"}}}
+2026-06-26 13:53:50,993 INFO 주소 검색 완료: '권선동 1287-9' 총 1건
+2026-06-26 13:53:50,997 INFO 검색 결과 표시: 1건
+2026-06-26 13:53:56,722 INFO VWorld 플러그인 언로드 중
+2026-06-26 13:53:56,734 INFO 위젯 닫힘: search
+2026-06-26 13:53:56,735 INFO VWorld 플러그인 언로드 완료
