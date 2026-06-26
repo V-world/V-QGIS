@@ -197,7 +197,18 @@ class SearchWorker(QThread):
             results = []
 
             # 지번 주소 검색
-            response = self.api_client.search_address(self.query, self.crs, 'ADDRESS')
+            params = {
+                "request": "search",
+                "format": "json",
+                "size": "10",
+                "page": "1",
+                "query": self.query,
+                "type": "ADDRESS",
+                "category": "PARCEL",
+                "crs": self.crs
+            }
+
+            response = self.api_client.request("/req/search", params).json()
 
             if response.get('response', {}).get('status') != 'NOT_FOUND':
                 items = response.get('response', {}).get('result', {}).get('items', [])
