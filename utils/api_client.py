@@ -82,8 +82,8 @@ class ApiClient:
             "page": "1",
             "query": query,
             "type": search_type,
-            "crs": crs,
-            "category": "PARCEL"
+            "category": "PARCEL",
+            "crs": crs
         }
 
         response = self.request("/req/search", params)
